@@ -1,0 +1,9 @@
+{
+    "id": "Nrfutil",
+    "version": "2.5.2",
+    "name": "Nrfutil",
+    "description": "Installs NRF Util tool and toolchain",
+    "installsAfter": [
+        "./features/gb_commons"
+    ]
+}
