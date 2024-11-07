@@ -3,9 +3,11 @@
     "version": "1.0.0",
     "name": "ClangD",
     "description": "ClangD",
-    "installsAfter": [
-        "./features/gb_commons"
-    ],
+    "dependsOn": {
+        "gb_commons:1": {
+            "flag": true
+        }
+    },
     "customizations": {
         "vscode": {
             "extensions": [

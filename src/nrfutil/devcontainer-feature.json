@@ -3,7 +3,9 @@
     "version": "2.5.2",
     "name": "Nrfutil",
     "description": "Installs NRF Util tool and toolchain",
-    "installsAfter": [
-        "./features/gb_commons"
-    ]
+    "dependsOn": {
+        "gb_commons:1": {
+            "flag": true
+        }
+    }
 }
