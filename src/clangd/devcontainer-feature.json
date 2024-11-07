@@ -4,7 +4,7 @@
     "name": "ClangD",
     "description": "ClangD",
     "dependsOn": {
-        "gb_commons:1": {
+        "ghcr.io/devcontainers/goodbyte_software/goodbyte_features/gb_commons:1": {
             "flag": true
         }
     },
