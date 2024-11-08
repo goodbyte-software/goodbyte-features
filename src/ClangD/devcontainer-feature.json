@@ -3,11 +3,6 @@
     "version": "1.0.0",
     "name": "ClangD",
     "description": "ClangD",
-    "dependsOn": {
-        "ghcr.io/devcontainers/goodbyte_software/goodbyte_features/gb_commons:1": {
-            "flag": true
-        }
-    },
     "customizations": {
         "vscode": {
             "extensions": [
