@@ -1,7 +1,7 @@
 {
-    "id": "JLink",
+    "id": "JLink_Goodbyte",
     "version": "7.9.4",
-    "name": "Jlink",
+    "name": "JLink_Goodbyte",
     "description": "JLink feature by goodbyte software.",
     "dependsOn": {
         "ghcr.io/devcontainers/features/common-utils:2": {}
