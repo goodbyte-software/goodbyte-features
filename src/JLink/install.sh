@@ -8,7 +8,9 @@ apt install libusb-1.0-0
 
 convert_version_format() {
     local version="$1"
-    echo "${version//./}"
+    version="${version//./}"
+    version="${version%%0}"
+    echo "$version"
 }
 
 
