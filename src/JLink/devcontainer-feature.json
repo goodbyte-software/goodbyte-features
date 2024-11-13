@@ -1,6 +1,6 @@
 {
     "id": "JLink",
-    "version": "8.10.0",
+    "version": "1.0.0",
     "name": "JLink",
     "description": "JLink feature by goodbyte software.",
     "dependsOn": { 
@@ -9,11 +9,8 @@
     "options": {
         "version:": {
             "type": "string",
-            "proposals": [
-                "latest",
-                "8.10.0"
-            ],
-            "default": "latest",
+            "enum": ["latest", "7.94e", "8.10"],
+            "default": "7.94e",
             "description": "The version of JLink to use."
         }
     }

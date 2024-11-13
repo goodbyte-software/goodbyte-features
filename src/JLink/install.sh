@@ -9,14 +9,9 @@ apt install libusb-1.0-0
 convert_version_format() {
     local version="$1"
     version="${version//./}"
-    version="${version%%0}"
     echo "$version"
 }
 
-
-if [ -z "${VERSION}" ]; then
-	VERSION=latest
-fi
 
 JLINK_VERSION=$(convert_version_format "$VERSION")
 JLINK_URL="https://www.segger.com/downloads/jlink/JLink_Linux_V${JLINK_VERSION}_x86_64.tgz"
