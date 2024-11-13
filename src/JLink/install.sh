@@ -28,7 +28,7 @@ if [ -n "$JLINK_URL" ]; then
     cd $TEMP_DIR
 
 
-    wget --post-data "accept_license_agreement=accepted" "$JLINK_URL" | tar -xz || { echo "Download error"; exit 1; }
+    wget --post-data "accept_license_agreement=accepted" "$JLINK_URL" || { echo "Download error"; exit 1; }
 
     if [ -f JLink_*.tgz ]; then
         mkdir -p /opt/SEGGER
