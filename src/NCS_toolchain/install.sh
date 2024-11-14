@@ -1,9 +1,9 @@
 #!/bin/bash
 
-NCS_VERSION="2.7.0"
 NRFUTIL_URL="https://developer.nordicsemi.com/.pc-tools/nrfutil/x64-linux/nrfutil"
 NCLT_URL="https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-command-line-tools/sw/versions-10-x-x/10-24-0/nrf-command-line-tools-10.24.0_linux-amd64.tar.gz"
-
+INSTALL_DIR=/Toolchains
+mkdir -p ${INSTALL_DIR}
 wget -q "$NRFUTIL_URL"
 
 if [ $? -ne 0 ]; then
@@ -21,16 +21,16 @@ nrfutil install nrf5sdk-tools
 nrfutil install device
 nrfutil install toolchain-manager
 
-nrfutil toolchain-manager install --ncs-version v${NCS_VERSION}
+nrfutil toolchain-manager install --ncs-version v${VERSION} --install-dir ${INSTALL_DIR}
 
 if [ $? -ne 0 ]; then
-    echo "Error: Installing NCS version v${NCS_VERSION} failed!"
+    echo "Error: Installing NCS version v${VERSION} failed!"
     exit 1
 else
     echo "NCS version v${NCS_VERSION} installed successfully."
 fi
 
-nrfutil toolchain-manager env --ncs-version v${NCS_VERSION} --as-script > ~/.zephyrrc
+nrfutil toolchain-manager env --ncs-version v${VERSION} --as-script > ${INSTALL_DIR}/.zephyrrc
 
 if [ -n "$NCLT_URL" ]; then
 
