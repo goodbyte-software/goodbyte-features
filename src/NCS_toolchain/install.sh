@@ -46,7 +46,7 @@ else
 fi
 
 
-sudo -u "${USERNAME}" nrfutil toolchain-manager env --ncs-version v${VERSION} --as-script > usr/local/bin/.zephyrrc
+sudo -u "${USERNAME}" nrfutil toolchain-manager env --ncs-version v${VERSION} --as-script > /usr/local/bin/.zephyrrc
 
 
 if [ -n "$NCLT_URL" ]; then
