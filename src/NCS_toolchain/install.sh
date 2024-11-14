@@ -3,7 +3,6 @@
 NRFUTIL_URL="https://developer.nordicsemi.com/.pc-tools/nrfutil/x64-linux/nrfutil"
 NCLT_URL="https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-command-line-tools/sw/versions-10-x-x/10-24-0/nrf-command-line-tools-10.24.0_linux-amd64.tar.gz"
 USERNAME="${USERNAME:-"${_REMOTE_USER:-"automatic"}"}"
-VERSION="2.7.0"
 
 if [ "${USERNAME}" = "auto" ] || [ "${USERNAME}" = "automatic" ]; then
     USERNAME=""
@@ -20,7 +19,7 @@ if [ "${USERNAME}" = "auto" ] || [ "${USERNAME}" = "automatic" ]; then
 elif [ "${USERNAME}" = "none" ] || ! id -u "${USERNAME}" > /dev/null 2>&1; then
     USERNAME=root
 fi
-
+export USERNAME_VAR="${USERNAME}"
 
 wget -q "$NRFUTIL_URL" -O /usr/local/bin/nrfutil
 if [ $? -ne 0 ]; then
@@ -32,12 +31,12 @@ fi
 
 chmod +x /usr/local/bin/nrfutil
 
-# Uruchamianie poleceń nrfutil jako USERNAME
+
 sudo -u "${USERNAME}" nrfutil install nrf5sdk-tools
 sudo -u "${USERNAME}" nrfutil install device
 sudo -u "${USERNAME}" nrfutil install toolchain-manager
 
-# Instalacja wersji NCS
+
 sudo -u "${USERNAME}" nrfutil toolchain-manager install --ncs-version v${VERSION}
 if [ $? -ne 0 ]; then
     echo "Error: Installing NCS version v${VERSION} failed!"
@@ -46,10 +45,10 @@ else
     echo "NCS version v${VERSION} installed successfully."
 fi
 
-# Konfiguracja środowiska
-sudo -u "${USERNAME}" nrfutil toolchain-manager env --ncs-version v${VERSION} --as-script > /~/.zephyrrc
 
-# Instalacja narzędzi linii poleceń nRF, jeśli URL jest dostępny
+sudo -u "${USERNAME}" nrfutil toolchain-manager env --ncs-version v${VERSION} --as-script > ~/.zephyrrc
+
+
 if [ -n "$NCLT_URL" ]; then
     TEMP_DIR=$(mktemp -d)
     cd "$TEMP_DIR"
