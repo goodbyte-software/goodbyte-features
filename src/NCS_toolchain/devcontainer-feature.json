@@ -1,0 +1,18 @@
+{
+    "id": "NCS_toolchain",
+    "version": "1.0.0",
+    "name": "NCS Toolchain",
+    "description": "This feature includes tools neeeded to develop applications in the NCS environment.",
+    "dependsOn": {
+        "ghcr.io/devcontainers/features/common-utils:2": {}
+    },
+    "options": {
+        "version": {
+            "type": "string",
+            "enum": ["2.7.0", "2.5.2"],
+            "default": "2.7.0",
+            "description": "The version of toolchain to use."
+        }
+    }
+
+}
