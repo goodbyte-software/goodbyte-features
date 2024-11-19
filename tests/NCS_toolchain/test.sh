@@ -4,7 +4,7 @@ set -ex
 image=$1
 
 
-SRC_DIR="./src/NCS_toolchain"
+SRC_DIR="$(pwd)/../../src/NCS_toolchain"
 
 temp_dir=$(mktemp -d)
 trap 'rm -rf "$temp_dir"' SIGINT SIGTERM ERR EXIT
