@@ -3,6 +3,7 @@
 set -ex
 image=$1
 
+options='{}'
 
 SRC_DIR=$(realpath "$(dirname "$0")/../../src/NCS_toolchain")
 
