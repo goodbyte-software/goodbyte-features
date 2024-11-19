@@ -6,7 +6,6 @@ set -e
 apt-get -y update
 apt-get install --only-upgrade tar
 apt install libusb-1.0-0
-VERSION="${VERSION:-"7.94e"}"
 
 convert_version_format() {
     local version="${1:-$VERSION}"  

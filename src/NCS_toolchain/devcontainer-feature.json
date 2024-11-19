@@ -7,7 +7,7 @@
         "ghcr.io/devcontainers/features/common-utils:2": {}
     },
     "options": {
-        "version:": {
+        "version": {
             "type": "string",
             "enum": ["2.7.0", "2.5.2"],
             "default": "2.7.0",
