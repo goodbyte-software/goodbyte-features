@@ -1,8 +1,8 @@
 #!bin/bash
 
 set -ex
-[[ -n $1 ]] && image=$1 || image='mcr.microsoft.com/devcontainers/base:ubuntu-22.04'
-[[ -n $2 ]] && options=$2 || options='{}'
+image=$1
+
 
 SRC_DIR="./src/NCS_toolchain"
 
