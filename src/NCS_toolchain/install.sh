@@ -14,7 +14,7 @@ if [ "${USERNAME}" = "auto" ] || [ "${USERNAME}" = "automatic" ]; then
         fi
     done
     if [ "${USERNAME}" = "" ]; then
-        USERNAME=root
+        USERNAME=NON_ROOT
     fi
 elif [ "${USERNAME}" = "none" ] || ! id -u "${USERNAME}" > /dev/null 2>&1; then
     USERNAME=root
@@ -36,6 +36,7 @@ sudo -u "${USERNAME}" nrfutil install nrf5sdk-tools
 sudo -u "${USERNAME}" nrfutil install device
 sudo -u "${USERNAME}" nrfutil install toolchain-manager
 
+rm -f ${USERNAME}/ncs/downloads/*
 
 sudo -u "${USERNAME}" nrfutil toolchain-manager install --ncs-version v${VERSION}
 if [ $? -ne 0 ]; then
@@ -54,7 +55,6 @@ if [ -n "$NCLT_URL" ]; then
     cd "$TEMP_DIR"
     
     wget -qO- "$NCLT_URL" | tar -xz || { echo "Download error"; exit 1; }
-
     if [ -d ./nrf-command-line-tools ]; then
         cp -r ./nrf-command-line-tools /opt
         ln -sf /opt/nrf-command-line-tools/bin/nrfjprog /usr/local/bin/nrfjprog
