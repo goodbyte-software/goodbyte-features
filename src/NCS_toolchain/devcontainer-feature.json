@@ -5,6 +5,7 @@
     "description": "This feature includes tools neeeded to develop applications in the NCS environment.",
     "dependsOn": {
         "ghcr.io/goodbyte-software/goodbyte-features/dev-dependencies:latest": {
+
             "ninja_version": "1.10.2",
             "device_tree_compiler": "true"
         },

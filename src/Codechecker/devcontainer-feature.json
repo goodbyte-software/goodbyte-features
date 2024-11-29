@@ -9,6 +9,7 @@
             "version": "3.10"
         },
         "ghcr.io/goodbyte-software/goodbyte-features/dev-dependencies:latest": {}
+
     }
 
 }
