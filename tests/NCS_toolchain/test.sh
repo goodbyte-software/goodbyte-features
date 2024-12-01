@@ -1,33 +1,21 @@
 #!/bin/bash
 
 set -ex
-image=$1
 
-options='{}'
+source dev-container-features-test-lib
 
-SRC_DIR=$(realpath "$(dirname "$0")/../../src/NCS_toolchain")
+check "Is remote user valid" test -f /home/${USERNAME}
 
+check "West validation" west --version
 
-temp_dir=$(mktemp -d)
-trap 'rm -rf "$temp_dir"' SIGINT SIGTERM ERR EXIT
+check "Python3 validation" which python3
 
-pushd "$temp_dir"
-mkdir -p .devcontainer
+check "Pip3 validation" which pip3
 
-cat <<EOF | tee .devcontainer/devcontainer.json
-{
-  "image": "$image",
-  "features": {
-    "./feature": $options
-  }
-}
-EOF
+check "Validate toolchain path and version" test -f home/${USERNAME}/.local/zephyr-sdk-${VERSION}
 
-rsync -av --exclude .git "$SRC_DIR/" "$temp_dir/.devcontainer/feature/"
+check "Validate toolchain architecture" test -f /home/${USERNAME}/.local/zephyr-sdk-${VERSION}/${ARCHITECTURE}*
 
-container_id=$(devcontainer up --workspace-folder . | jq -r .containerId)
+check "Nrf-command-line-tools validation" nrfjprog --version 
 
-devcontainer exec --workspace-folder . nrfutil toolchain-manager --version
-
-docker kill "$container_id"
-
+reportResults

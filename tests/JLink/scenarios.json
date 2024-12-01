@@ -1,0 +1,12 @@
+{
+    "install_JLink": {
+        "image": "ubuntu:22.04",
+        "features": {
+            "JLink": {
+                "version": "7.94e"
+            }
+
+        },
+        "remoteUser": "tester"
+    }
+}
