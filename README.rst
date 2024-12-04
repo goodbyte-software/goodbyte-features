@@ -31,7 +31,7 @@ The JLink feature integrates SEGGER J-Link debugging tools into the development 
 CodeChecker
 *************
 
-CodeChecker is a tool designed for static code analysis, helping developers identify potential bugs, style issues, or vulnerabilities in their projects. It integrates into development workflows to enhance code quality and maintainability. 
+CodeChecker is a tool designed for static code analysis, helping developers identify potential bugs, style issues, or vulnerabilities in their projects. It integrates into development workflows to enhance code quality and maintainability.
 
 dev-dependencies
 ****************
@@ -41,8 +41,12 @@ Dev-dependencies is a package designed to extend the common-utils feature for th
 
 References
 ==========
+
 `<https://github.com/devcontainers/feature-starter>`_
 
+`<https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/installation/install_ncs.html>`_
+
+`<https://github.com/teslamotors/devcontainers-cli/blob/main/docs/features/test.md>`_
 
 📜 License
 This project is licensed under MIT Licence same as the original project.
