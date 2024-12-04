@@ -1,5 +1,5 @@
 {
-    "id": "NCS_toolchain",
+    "id": "NCS-toolchain",
     "version": "1.0.0",
     "name": "NCS Toolchain",
     "description": "This feature includes tools neeeded to develop applications in the NCS environment.",
@@ -17,7 +17,7 @@
     "options": {
         "version": {
             "type": "string",
-            "enum": ["0.16.8", "2.5.2"],
+            "enum": ["0.16.8"],
             "default": "0.16.8",
             "description": "The version of toolchain to use."
         },
@@ -48,7 +48,7 @@
                 "xtensa-nxp_rt600_adsp",
                 "xtensa-sample_controller"
             ],
-            "default": "arm64",
+            "default": "arm",
             "description": "The architecture of the toolchain."
         }
     }
