@@ -29,9 +29,15 @@ fi
 
 export USERNAME_VAR="${USERNAME}"
 
+# Ustalanie katalogu domowego użytkownika
+if [ "${USERNAME}" = "root" ]; then
+    USER_HOME="/root"
+else
+    USER_HOME="/home/${USERNAME}"
+fi
+
 PYTHON_DIR=$(find /usr/local/python/ -maxdepth 1 -type d -name "[0-9]*.*" | sort -V | tail -n 1)
 export PATH="${PYTHON_DIR}/bin:$PATH"
-
 
 sudo -u "${USERNAME}" bash -c "export PATH=${PATH}; pip3 install --user -U west"
 sudo -u "${USERNAME}" bash -c 'echo "export PATH=\$HOME/.local/bin:\$PATH" >> ~/.bashrc'
@@ -40,11 +46,12 @@ sudo -u "${USERNAME}" bash -c 'source ~/.bashrc'
 if [ -n "$ZEPHYR_SDK_URL" ]; then
     wget -P /tmp "$ZEPHYR_SDK_URL" "$ZEPHYR_SDK_SHA_URL"
     
-    sudo -u "${USERNAME}" tar xf /tmp/zephyr-sdk-${VERSION}_linux-x86_64.tar.xz -C /home/${USERNAME}/.local
-    sudo -u "${USERNAME}" cp /tmp/sha256.sum /home/${USERNAME}/.local
-    sudo -u "${USERNAME}" cd /home/${USERNAME}/.local/zephyr-sdk-${VERSION} && ./setup.sh
-    sudo -u "${USERNAME}" cp /home/${USERNAME}/.local/zephyr-sdk-${VERSION}/sysroots/x86_64-pokysdk-linux/usr/share/openocd/contrib/60-openocd.rules /etc/udev/rules.d/ &&  udevadm control --reload-rules
-    for DIR in /home/${USERNAME}/.local/zephyr-sdk-${VERSION}/*; do
+    sudo -u "${USERNAME}" mkdir -p "${USER_HOME}/.local"
+    sudo -u "${USERNAME}" tar xf /tmp/zephyr-sdk-${VERSION}_linux-x86_64.tar.xz -C "${USER_HOME}/.local"
+    sudo -u "${USERNAME}" cp /tmp/sha256.sum "${USER_HOME}/.local"
+    sudo -u "${USERNAME}" cd ${USER_HOME}/.local/zephyr-sdk-${VERSION} && ./setup.sh
+    sudo -u "${USERNAME}" cp "${USER_HOME}/.local/zephyr-sdk-${VERSION}/sysroots/x86_64-pokysdk-linux/usr/share/openocd/contrib/60-openocd.rules" /etc/udev/rules.d/ && udevadm control --reload-rules
+    for DIR in "${USER_HOME}/.local/zephyr-sdk-${VERSION}"/*; do
         if [[ "$DIR" != *"$ARCHITECTURE"* ]] && [[ "$DIR" != *"cmake"* ]] && [[ "$DIR" != *"sdk_toolchains"* ]] && [[ "$DIR" != *"sdk_version"* ]] && [[ "$DIR" != *"setup.sh"* ]] && [[ "$DIR" != *"zephyr-sdk-x86_64-hosttools-standalone-0.9.sh"* ]]; then
             rm -rf "$DIR"
         fi
@@ -53,13 +60,15 @@ else
     echo "Skipping Zephyr SDK installation (URL not provided)"
     exit 1
 fi
-if [ -d /home/${USERNAME}/.local/zephyr-sdk-${VERSION} ]; then
+
+if [ -d "${USER_HOME}/.local/zephyr-sdk-${VERSION}" ]; then
     rm /tmp/zephyr-sdk-${VERSION}_linux-x86_64.tar.xz
     rm /tmp/sha256.sum
-    else
+else
     echo "Zephyr SDK not found! - Exiting"
     exit 1
 fi
+
 if [ -n "$NCLT_URL" ]; then
     TEMP_DIR=$(mktemp -d)
     cd "$TEMP_DIR"

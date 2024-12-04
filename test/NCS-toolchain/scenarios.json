@@ -1,14 +1,11 @@
 {
-    "install_NCS_toolchain": {
+    "check-version-toolchain": {
         "image": "ubuntu:22.04",
         "features": {
-            "JLink": {
+            "NCS-toolchain": {
                 "version": "0.16.8",
                 "Architecture": "arm"
             }
-
-        },
-        "remoteUser": "tester"
-
+        }
     }
 }

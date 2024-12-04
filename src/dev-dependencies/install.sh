@@ -26,6 +26,8 @@ NINJA_URL="https://github.com/ninja-build/ninja/releases/download/v${NINJA_VERSI
 
 # export USERNAME_VAR="${USERNAME}"
 
+#Some packages are installed with common-utils feature 
+
 PACKAGES_COMMON=(
     cmake
     gperf
