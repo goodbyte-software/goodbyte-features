@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 #Some packages are installed with common-utils feature 
 PACKAGES_COMMON=(
@@ -23,7 +23,7 @@ for PACKAGE in "${PACKAGES_COMMON[@]}"; do
 apt-get -y install --no-install-recommends "${PACKAGE}"
 done
 
-NINJA_URL="https://github.com/ninja-build/ninja/releases/download/v${NINJA_VERSION}/ninja-linux.zip"
+NINJA_URL="https://github.com/ninja-build/ninja/releases/download/v${NINJAVERSION}/ninja-linux.zip"
 if [ -n "$NINJA_URL" ]; then
     wget -P /tmp "$NINJA_URL"
     unzip -o /tmp/ninja-linux.zip -d /usr/local/bin
@@ -33,7 +33,7 @@ else
     echo "Skipping ninja - URL not provided"
 fi
 
-if [ "$DEVICE_TREE_COMPILER" = true ]; then
+if [ "$INSTALLDEVICETREECOMPILER" = true ]; then
     apt-get update && apt-get install -y device-tree-compiler
 else
     echo "Skipping device tree compiler"
