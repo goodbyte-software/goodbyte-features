@@ -3,8 +3,8 @@
         "image": "ubuntu:22.04",
         "features": {
             "dev-dependencies": {
-                "ninja_version": "1.10.2",
-                "device_tree_compiler": true
+                "ninjaVersion": "1.10.2",
+                "installDeviceTreeCompiler": true
             }
         }
     }

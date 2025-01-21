@@ -2,23 +2,24 @@
     "id": "dev-dependencies",
     "version": "1.0.0",
     "name": "dev-dependencies",
-    "description": "Installs development dependencies.",
+    "description": "Basic development dependencies.",
     "dependsOn": {
         "ghcr.io/devcontainers/features/common-utils:2": {}
     },
     "options": {
-        "ninja_version": {
+        "ninjaVersion": {
             "type": "string",
-            "enum": ["1.10.1", "1.10.2"],
+            "enum": [
+                "1.10.1",
+                "1.10.2"
+            ],
             "default": "1.10.2",
             "description": "The version of ninja to use."
         },
-        "device_tree_compiler": {
+        "installDeviceTreeCompiler": {
             "type": "boolean",
             "default": false,
             "description": "Whether to install device_tree_compiler."
         }
-       
     }
-
 }
