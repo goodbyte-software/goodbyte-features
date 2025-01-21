@@ -2,9 +2,9 @@
     "check-version-toolchain": {
         "image": "ubuntu:22.04",
         "features": {
-            "NCS-toolchain": {
+            "ncs-toolchain": {
                 "version": "0.16.8",
-                "Architecture": "arm"
+                "architecture": "arm"
             }
         }
     }

@@ -1,27 +1,27 @@
 {
-    "id": "NCS-toolchain",
+    "id": "ncs-toolchain",
     "version": "1.0.0",
     "name": "NCS Toolchain",
-    "description": "This feature includes tools neeeded to develop applications in the NCS environment.",
+    "description": "This feature includes tools needed to develop applications in the NCS environment.",
     "dependsOn": {
         "ghcr.io/goodbyte-software/goodbyte-features/dev-dependencies:latest": {
-
-            "ninja_version": "1.10.2",
-            "device_tree_compiler": "true"
+            "ninjaVersion": "1.10.2",
+            "installDeviceTreeCompiler": "true"
         },
         "ghcr.io/devcontainers/features/python:1": {
             "version": "3.10"
         }
-        
     },
     "options": {
         "version": {
             "type": "string",
-            "enum": ["0.16.8"],
+            "enum": [
+                "0.16.8"
+            ],
             "default": "0.16.8",
-            "description": "The version of toolchain to use."
+            "description": "The version of the toolchain to use"
         },
-        "Architecture": {
+        "architecture": {
             "type": "string",
             "enum": [
                 "arm",
@@ -49,8 +49,7 @@
                 "xtensa-sample_controller"
             ],
             "default": "arm",
-            "description": "The architecture of the toolchain."
+            "description": "The architecture of the toolchain"
         }
     }
-
 }

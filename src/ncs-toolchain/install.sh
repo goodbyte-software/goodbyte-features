@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Installation made according to: https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/installation/install_ncs.html
 set -e
 
 NCLT_URL="https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-command-line-tools/sw/versions-10-x-x/10-24-0/nrf-command-line-tools-10.24.0_linux-amd64.tar.gz"
@@ -29,7 +29,6 @@ fi
 
 export USERNAME_VAR="${USERNAME}"
 
-# Ustalanie katalogu domowego użytkownika
 if [ "${USERNAME}" = "root" ]; then
     USER_HOME="/root"
 else

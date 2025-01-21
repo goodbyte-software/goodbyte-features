@@ -1,18 +1,21 @@
 {
-    "id": "JLink",
+    "id": "jLink",
     "version": "1.0.0",
-    "name": "JLink",
-    "description": "JLink feature by goodbyte software.",
-    "dependsOn": { 
+    "name": "jLink",
+    "description": "JLink software pack",
+    "dependsOn": {
         "ghcr.io/devcontainers/features/common-utils:2": {}
     },
     "options": {
         "version": {
             "type": "string",
-            "enum": ["latest", "7.94e", "8.10"],
+            "enum": [
+                "latest",
+                "7.94e",
+                "8.10"
+            ],
             "default": "7.94e",
-            "description": "The version of JLink to use."
+            "description": "The version of JLink to use"
         }
     }
-
 }
