@@ -25,10 +25,10 @@ jobs:
     strategy:
       matrix:
         features:
-          - Codechecker
+          - codechecker
           - dev-dependencies
-          - JLink
-          - NCS-toolchain
+          - jlink
+          - ncs-toolchain
         baseImage:
           - ubuntu:22.04
     steps:
@@ -45,7 +45,7 @@ jobs:
     strategy:
       matrix:
         features:
-          - NCS-toolchain
+          - ncs-toolchain
           - dev-dependencies
     steps:
       - uses: actions/checkout@v4
