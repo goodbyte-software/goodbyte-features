@@ -1,0 +1,22 @@
+{
+    "id": "arm-none-eabi-gcc",
+    "version": "1.0.0",
+    "name": "arm-none-eabi-gcc",
+    "description": "GNU Arm Embedded Toolchain",
+    "dependsOn": {
+        "ghcr.io/goodbyte-software/goodbyte-features/dev-dependencies:latest": {}
+    },
+    "options": {
+        "version": {
+            "type": "string",
+            "enum": [
+                "14.2",
+                "13.3",
+                "12.3",
+                "11.3"
+            ],
+            "default": "14.2",
+            "description": "Version of toolchain to use"
+        }
+    }
+}

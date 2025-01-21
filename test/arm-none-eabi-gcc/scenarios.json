@@ -1,0 +1,34 @@
+{
+    "check-version-14": {
+        "image": "ubuntu:22.04",
+        "features": {
+            "arm-none-eabi-gcc": {
+                "version": "14.2"
+            }
+        }
+    },
+    "check-version-13": {
+        "image": "ubuntu:22.04",
+        "features": {
+            "arm-none-eabi-gcc": {
+                "version": "13.3"
+            }
+        }
+    },
+    "check-version-12": {
+        "image": "ubuntu:22.04",
+        "features": {
+            "arm-none-eabi-gcc": {
+                "version": "12.3"
+            }
+        }
+    },
+    "check-version-11": {
+        "image": "ubuntu:22.04",
+        "features": {
+            "arm-none-eabi-gcc": {
+                "version": "11.3"
+            }
+        }
+    }
+}
