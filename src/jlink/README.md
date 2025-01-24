@@ -1,5 +1,5 @@
 
-# jLink (jLink)
+# jlink (jlink)
 
 JLink software pack
 
@@ -7,7 +7,7 @@ JLink software pack
 
 ```json
 "features": {
-    "ghcr.io/goodbyte-software/goodbyte-features/jLink:1": {}
+    "ghcr.io/goodbyte-software/goodbyte-features/jlink:1": {}
 }
 ```
 
