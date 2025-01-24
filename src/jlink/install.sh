@@ -25,6 +25,7 @@ if [ -n "$JLINK_URL" ]; then
         mkdir -p /opt/SEGGER
         tar -xzf JLink_*.tgz -C /opt/SEGGER
         mv /opt/SEGGER/JLink* /opt/SEGGER/JLink
+        find /opt/SEGGER/JLink -type f -executable -exec ln -s {} /usr/bin/ \;
     else
         echo "JLink package not found!"
     fi
