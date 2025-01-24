@@ -1,7 +1,7 @@
 {
-    "id": "jLink",
+    "id": "jlink",
     "version": "1.0.1",
-    "name": "jLink",
+    "name": "jlink",
     "description": "JLink software pack",
     "dependsOn": {
         "ghcr.io/devcontainers/features/common-utils:2": {}
