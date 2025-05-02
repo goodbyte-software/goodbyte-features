@@ -12,13 +12,16 @@ download_arm_gcc() {
 }
 
 install_arm_gcc() {
+    # gdb-multiarch supports importing python modules
+    sudo apt install gdb-multiarch
+    ln -sf `which gdb-multiarch` /usr/bin/arm-none-eabi-gdb
+
     ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-gcc /usr/bin/arm-none-eabi-gcc
     ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-g++ /usr/bin/arm-none-eabi-g++
     ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-ar /usr/bin/arm-none-eabi-ar
     ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-as /usr/bin/arm-none-eabi-as
     ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-ld /usr/bin/arm-none-eabi-ld
     ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-strip /usr/bin/arm-none-eabi-strip
-    ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-gdb /usr/bin/arm-none-eabi-gdb
     ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-size /usr/bin/arm-none-eabi-size
     ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-objcopy /usr/bin/arm-none-eabi-objcopy
     ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-objdump /usr/bin/arm-none-eabi-objdump
