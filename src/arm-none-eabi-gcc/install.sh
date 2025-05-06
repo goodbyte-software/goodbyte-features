@@ -13,7 +13,7 @@ download_arm_gcc() {
 
 install_arm_gcc() {
     # gdb-multiarch supports importing python modules
-    sudo apt install gdb-multiarch
+    sudo apt-get install -y gdb-multiarch
     ln -sf `which gdb-multiarch` /usr/bin/arm-none-eabi-gdb
 
     ln -s /usr/share/$GCC_TOOLCHAIN_NAME/bin/arm-none-eabi-gcc /usr/bin/arm-none-eabi-gcc
