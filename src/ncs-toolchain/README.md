@@ -1,7 +1,7 @@
 
 # NCS Toolchain (ncs-toolchain)
 
-This feature includes tools (Zephyr toolchain and Nrfutil) needed to develop applications in the NCS environment.
+This feature includes tools needed to develop applications in the NCS environment.
 
 ## Example Usage
 
