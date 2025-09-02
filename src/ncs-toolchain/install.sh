@@ -70,7 +70,7 @@ else
     exit 1
 fi
 
-if [ "${VERSION:-}" = "0.16.4" ]; then
+if [ "${VERSION:-}" = "0.16.8" ]; then
   if [ -n "${NCLT_URL:-}" ]; then
     tmp="$(mktemp -d)"
     cd "$tmp"
@@ -107,7 +107,7 @@ else
 
     chmod +x nrfutil
     mv nrfutil /usr/local/bin/nrfutil
-
+    
     cd - >/dev/null
     rm -rf "$tmp"
   else
