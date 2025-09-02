@@ -2,7 +2,7 @@
 # Installation made according to: https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/installation/install_ncs.html
 set -e
 
-NCLT_URL="https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-command-line-tools/sw/versions-10-x-x/10-24-0/nrf-command-line-tools-10.24.0_linux-amd64.tar.gz"
+NRFUTIL_URL="https://files.nordicsemi.com/artifactory/swtools/external/nrfutil/executables/x86_64-unknown-linux-gnu/nrfutil"
 ZEPHYR_SDK_URL="https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${VERSION}/zephyr-sdk-${VERSION}_linux-x86_64.tar.xz"
 ZEPHYR_SDK_SHA_URL="https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${VERSION}/sha256.sum"
 
@@ -51,7 +51,7 @@ if [ -n "$ZEPHYR_SDK_URL" ]; then
     sudo -u "${USERNAME}" cd ${USER_HOME}/.local/zephyr-sdk-${VERSION} && ./setup.sh
     sudo -u "${USERNAME}" cp "${USER_HOME}/.local/zephyr-sdk-${VERSION}/sysroots/x86_64-pokysdk-linux/usr/share/openocd/contrib/60-openocd.rules" /etc/udev/rules.d/ && udevadm control --reload-rules
     for DIR in "${USER_HOME}/.local/zephyr-sdk-${VERSION}"/*; do
-        if [[ "$DIR" != *"$ARCHITECTURE"* ]] && [[ "$DIR" != *"cmake"* ]] && [[ "$DIR" != *"sdk_toolchains"* ]] && [[ "$DIR" != *"sdk_version"* ]] && [[ "$DIR" != *"setup.sh"* ]] && [[ "$DIR" != *"zephyr-sdk-x86_64-hosttools-standalone-0.9.sh"* ]]; then
+        if [[ "$DIR" != *"$ARCHITECTURE"* ]] && [[ "$DIR" != *"cmake"* ]] && [[ "$DIR" != *"sdk_toolchains"* ]] && [[ "$DIR" != *"sdk_version"* ]] && [[ "$DIR" != *"setup.sh"* ]] && [[ "$DIR" != *"hosttools-standalone"* ]]; then
             rm -rf "$DIR"
         fi
     done
@@ -68,25 +68,27 @@ else
     exit 1
 fi
 
-if [ -n "$NCLT_URL" ]; then
-    TEMP_DIR=$(mktemp -d)
-    cd "$TEMP_DIR"
+if [ -n "${NRFUTIL_URL:-}" ]; then
+  tmp="$(mktemp -d)"
+  cd "$tmp"
 
-    wget -qO- "$NCLT_URL" | tar -xz || {
-        echo "Download error"
-        exit 1
-    }
-    if [ -d ./nrf-command-line-tools ]; then
-        cp -r ./nrf-command-line-tools /opt
-        ln -sf /opt/nrf-command-line-tools/bin/nrfjprog /usr/local/bin/nrfjprog
-        ln -sf /opt/nrf-command-line-tools/bin/mergehex /usr/local/bin/mergehex
-    else
-        echo "nrf-command-line-tools not found! - Exiting"
-    fi
-
-    cd -
-    rm -rf "$TEMP_DIR"
-else
-    echo "Skipping nRF Command Line Tools installation (URL not provided)"
+  curl -fSL "$NRFUTIL_URL" -o nrfutil || {
+    echo "Download error"
     exit 1
+  }
+
+  chmod +x nrfutil
+  mv nrfutil /usr/local/bin/nrfutil
+  
+  nrfutil self-upgrade
+  nrfutil install device 
+  nrfutil install completion
+  nrfutil install trace
+
+  cd - >/dev/null
+  rm -rf "$tmp"
+else
+  echo "Skipping nrfutil installation (URL not provided)"
+  exit 1
 fi
+
