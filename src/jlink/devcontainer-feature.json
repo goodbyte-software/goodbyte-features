@@ -1,6 +1,6 @@
 {
     "id": "jlink",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "name": "jlink",
     "description": "JLink software pack",
     "dependsOn": {
@@ -12,7 +12,8 @@
             "enum": [
                 "latest",
                 "7.94e",
-                "8.10"
+                "8.10",
+                "8.60"
             ],
             "default": "7.94e",
             "description": "The version of JLink to use"

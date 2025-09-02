@@ -1,6 +1,6 @@
 {
     "id": "ncs-toolchain",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "name": "NCS Toolchain",
     "description": "This feature includes tools needed to develop applications in the NCS environment.",
     "dependsOn": {
@@ -16,7 +16,8 @@
         "version": {
             "type": "string",
             "enum": [
-                "0.16.8"
+                "0.16.8",
+                "0.17.4"
             ],
             "default": "0.16.8",
             "description": "The version of the toolchain to use"
