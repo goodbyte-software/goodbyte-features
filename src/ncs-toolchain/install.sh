@@ -5,8 +5,6 @@ set -e
 NRFUTIL_URL="https://files.nordicsemi.com/artifactory/swtools/external/nrfutil/executables/x86_64-unknown-linux-gnu/nrfutil"
 ZEPHYR_SDK_URL="https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${VERSION}/zephyr-sdk-${VERSION}_linux-x86_64.tar.xz"
 ZEPHYR_SDK_SHA_URL="https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${VERSION}/sha256.sum"
-NCLT_URL="https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-command-line-tools/sw/versions-10-x-x/10-24-0/nrf-command-line-tools-10.24.0_linux-amd64.tar.gz"
-
 
 export DEBIAN_FRONTEND=noninteractive
 export TZ=Europe/Warsaw
@@ -70,48 +68,27 @@ else
     exit 1
 fi
 
-if [ "${VERSION:-}" = "0.16.8" ]; then
-  if [ -n "${NCLT_URL:-}" ]; then
-    tmp="$(mktemp -d)"
-    cd "$tmp"
+if [ -n "${NRFUTIL_URL:-}" ]; then
+  tmp="$(mktemp -d)"
+  cd "$tmp"
 
-    wget -qO- "$NCLT_URL" | tar -xz || {
-      echo "Download error"
-      exit 1
-    }
-
-    if [ -d ./nrf-command-line-tools ]; then
-      cp -r ./nrf-command-line-tools /opt
-      ln -sf /opt/nrf-command-line-tools/bin/nrfjprog /usr/local/bin/nrfjprog
-      ln -sf /opt/nrf-command-line-tools/bin/mergehex /usr/local/bin/mergehex
-    else
-      echo "nrf-command-line-tools not found! - Exiting"
-      exit 1
-    fi
-
-    cd - >/dev/null
-    rm -rf "$tmp"
-  else
-    echo "Skipping nRF Command Line Tools installation (URL not provided)"
+  curl -fSL "$NRFUTIL_URL" -o nrfutil || {
+    echo "Download error"
     exit 1
-  fi
+  }
+
+  chmod +x nrfutil
+  mv nrfutil /usr/local/bin/nrfutil
+  
+  nrfutil self-upgrade
+  nrfutil install device 
+  nrfutil install completion
+  nrfutil install trace
+
+  cd - >/dev/null
+  rm -rf "$tmp"
 else
-  if [ -n "${NRFUTIL_URL:-}" ]; then
-    tmp="$(mktemp -d)"
-    cd "$tmp"
-
-    curl -fSL "$NRFUTIL_URL" -o nrfutil || {
-      echo "Download error"
-      exit 1
-    }
-
-    chmod +x nrfutil
-    mv nrfutil /usr/local/bin/nrfutil
-    
-    cd - >/dev/null
-    rm -rf "$tmp"
-  else
-    echo "Skipping nrfutil installation (URL not provided)"
-    exit 1
-  fi
+  echo "Skipping nrfutil installation (URL not provided)"
+  exit 1
 fi
+
