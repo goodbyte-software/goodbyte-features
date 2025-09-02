@@ -12,7 +12,8 @@
             "enum": [
                 "latest",
                 "7.94e",
-                "8.10"
+                "8.10",
+                "8.60"
             ],
             "default": "7.94e",
             "description": "The version of JLink to use"
