@@ -11,5 +11,6 @@ check "ld exists" arm-none-eabi-ld --version
 check "objcopy exists" arm-none-eabi-objcopy --version
 check "objdump exists" arm-none-eabi-objdump --version
 check "gdb exists" arm-none-eabi-gdb --version
+check "gcc-ar exists" arm-none-eabi-gcc-ar --version
 
 reportResults
